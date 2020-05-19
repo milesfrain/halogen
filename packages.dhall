@@ -123,6 +123,15 @@ let upstream =
 
 let overrides = {=}
 
-let additions = {=}
+let additions =
+  { bulma =
+      { dependencies =
+          [ "generics-rep" ]
+      , repo =
+          "https://github.com/sectore/purescript-bulma.git"
+      , version =
+          "v2.0.0"
+      }
+  }
 
 in  upstream // overrides // additions
