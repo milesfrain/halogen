@@ -6,6 +6,8 @@ import Data.Maybe (Maybe(..))
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
+import Halogen.HTML.Properties as HP
+import Tailwind as T
 
 type State = { count :: Int }
 
@@ -24,7 +26,8 @@ render state =
   HH.div_
     [ HH.p_ [ HH.text $ "You clicked " <> show state.count <> " times" ]
     , HH.button
-        [ HE.onClick \_ -> Just Increment ]
+        [ HP.classes [T.bgBlue300, T.hoverBgBlue700, T.textWhite, T.fontBold, T.py2, T.px2, T.rounded]
+        , HE.onClick \_ -> Just Increment ]
         [ HH.text "Click me" ]
     ]
 

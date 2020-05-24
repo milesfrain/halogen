@@ -1,8 +1,9 @@
 ### Quick Start
 ```
-git clone --depth 1 https://github.com/purescript-templates/halogen.git myApp
+git clone --branch tailwind https://github.com/milesfrain/halogen.git myApp
 cd myApp
-npm install -g purescript spago parcel
+npm install -g purescript spago parcel tailwindcss
+npm run gen-css
 npm run build
 npm run serve
 ```
@@ -28,10 +29,11 @@ Compatible with PureScript compiler 13.6
 
 Install tools globally:
 ```
-npm install -g purescript spago parcel
+npm install -g purescript spago parcel tailwindcss
 ```
 Initial compilation:
 ```
+npm run gen-css
 npm run build
 ```
 Launch webapp:
@@ -43,6 +45,16 @@ npm run serve
 If you're using an [editor](https://github.com/purescript/documentation/blob/master/ecosystem/Editor-and-tool-support.md#editors) that supports [`purs ide`](https://github.com/purescript/purescript/tree/master/psc-ide) or are running [`pscid`](https://github.com/kRITZCREEK/pscid), you simply need to keep the previous `npm run serve` command running in a terminal. Any save to a file will trigger an incremental recompilation, rebundle, and web page refresh, so you can immediately see your changes.
 
 If your workflow does not support automatic recompilation, or if you add, remove, or modify module names, then you will need to manually re-run `npm run build`.
+
+If you edit `tailwind.config.js` or `css/tailwind_inputs.css`, you'll need to re-run `npm run gen-css` to generate a fresh `dev/tailwind.css` and `src/Tailwind.purs`.
+
+If you're not planning on tweaking CSS while working on other parts of your project, and would like faster rebuilds, you can shrink the size of `src/Tailwind.purs` to only contain the CSS classes that are actually being used in your project by running:
+```
+npm run lock-css
+```
+Remember to also "Restart/Reconnect purs IDE server" so it picks-up this smaller file.
+
+Note that now **autocomplete will no-longer be aware of all possible CSS classes**, so re-run `gen-css` when you're ready again for the full CSS pallette.
 
 ### Production
 

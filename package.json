@@ -1,14 +1,21 @@
 {
   "license": "MIT",
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "parcel": "^1.12.4",
     "purescript": "^0.13.8",
-    "spago": "^0.15.2"
+    "spago": "^0.15.2",
+    "tailwindcss": "^1.4.6"
   },
   "scripts": {
     "build": "spago build",
     "serve": "parcel dev/index.html --out-dir dev-dist --open",
     "prep-prod": "cp dev/index.html prod && rm -rf dist",
-    "build-prod": "npm run prep-prod && spago bundle-app --to prod/index.js && parcel build prod/index.html"
+    "bundle": "spago bundle-app --to prod/index.js",
+    "build-prod": "npm run prep-prod && npm run bundle && npm run css-purge && parcel build prod/index.html",
+    "gen-css": "tailwindcss build css/tailwind_inputs.css -o dev/tailwind.css && cat dev/tailwind.css | ./css/css2purs.py > src/Tailwind.purs",
+    "css-purge": "NODE_ENV=production tailwindcss build css/tailwind_inputs.css -o prod/tailwind.css",
+    "lock-css": "npm run bundle && npm run css-purge && cat prod/tailwind.css | ./css/css2purs.py > src/Tailwind.purs"
+
   }
 }
