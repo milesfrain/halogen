@@ -15,7 +15,7 @@ cssNames = []
 def process(line):
     # Example input:
     # line = '    .-sm\:-space-y-0-w-1\/2:hover {'
-    regName = re.compile('^\s*\.([^ ]*?[^\\\\])(:.*)? .*$')
+    regName = re.compile('^\s*\.([^ ]*?[^,\\\\])(:.*)? .*$')
 
     m = regName.match(line)
 
