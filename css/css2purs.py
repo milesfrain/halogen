@@ -70,6 +70,17 @@ def cssToPs(cssStr):
     print(psName + ' :: ClassName')
     print(psName + ' = ClassName "' + cssStr + '"')
 
+def dedup(xs):
+  seen = set()
+  result = []
+
+  for item in xs:
+      if item not in seen:
+          seen.add(item)
+          result.append(item)
+
+  return result
+
 for line in fileinput.input():
     process(line)
 
@@ -78,5 +89,5 @@ print('module Tailwind where')
 print()
 print('import Halogen.HTML.Core (ClassName(..))')
 
-for cssName in cssNames:
+for cssName in dedup(cssNames):
     cssToPs(cssName)
