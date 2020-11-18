@@ -1,3 +1,5 @@
+## See the [Official Halogen Template](https://github.com/purescript-halogen/purescript-halogen-template), which is more up to date and now incorporates much of this repo's content.
+
 ### Quick Start
 ```
 git clone https://github.com/purescript-templates/halogen.git myApp
